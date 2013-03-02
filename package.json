@@ -1,0 +1,12 @@
+{
+  "name": "perfish",
+  "version": "0.0.0",
+  "description": "simple textual and xml manipulations for Jmeter jmx output",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "aocenas",
+  "license": "MIT"
+}
