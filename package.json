@@ -4,9 +4,16 @@
   "description": "simple textual and xml manipulations for Jmeter jmx output",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "test.js"
   },
   "repository": "",
   "author": "aocenas",
-  "license": "MIT"
+  "license": "MIT",
+  "gitHead": "a209ccac27ccc46d5eb452b7f5e0c653f84770a1",
+  "dependencies": {
+    "elementtree": "~0.1.5"
+  },
+  "devDependencies": {
+    "nodeunit": "~0.7.4"
+  }
 }
