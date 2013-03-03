@@ -7,18 +7,47 @@ exports = module.exports = {};
 
 //
 // main func which applies all active rules
-// TODO: handle the controller variable to limit the scope of changes
 //
-var go = function (controller, fileName) {
+var go = function (threadGroupName, fileName) {
   var rules = require('./lib/rules.js').rules;
 
   data = fs.readFileSync(fileName).toString();
   etree = et.parse(data);
-  
+
+  var threadGroup = null;
+  var hashTree = null;
+  if (threadGroupName) {
+    //
+    // in jmeter, threadGroup is one element and all it subelements are in its
+    // hastree. the problem is that this hashTree is actualy its sibling 
+    // element. so this code should handel that.
+    //
+    threadGroup = etree
+        .find('.//ThreadGroup[@testname="' + threadGroupName + '"]');
+    console.log(util.inspect(threadGroup));
+    var hashTreeId =  threadGroup
+        ._children[threadGroup._children.length - 1]._id + 1;
+    var allHashTrees = etree.findall('.//hashTree');
+    allHashTrees.forEach(function (tree) {
+      if (tree._id == hashTreeId) {
+        hashTree = tree;
+      }
+      return false;
+    });
+    console.log(util.inspect(hashTree));
+  }
+
   // apply each rule
   rules.forEach(function (rule) {
     if (rule.active) {
-      var elements = etree.findall(rule.xpath);
+      var elements;
+      if (threadGroup && hashTree) {
+        elements = hashTree.findall(rule.xpath);
+        elements = elements.concat(threadGroup.findall(rule.xpath))
+      } else {
+        elements = etree.findall(rule.xpath);
+      }
+
       //console.log(elements);
       elements.forEach(function (el) {
         var original = el.text;
