@@ -5,7 +5,11 @@ var path = require('path');
 
 exports = module.exports = {};
 
-var go = function (controler, fileName) {
+//
+// main func which applies all active rules
+// TODO: handle the controller variable to limit the scope of changes
+//
+var go = function (controller, fileName) {
   var rules = require('./lib/rules.js').rules;
 
   data = fs.readFileSync(fileName).toString();
