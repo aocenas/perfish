@@ -20,6 +20,9 @@ var go = function (controler, fileName) {
         var original = el.text;
         rule.fn(el);
       });
+      if (rule.changesCount) {
+        console.log(rule.name + ': ' + rule.changesCount);
+      }
     }
   });
 
