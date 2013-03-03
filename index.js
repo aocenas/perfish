@@ -8,14 +8,10 @@ exports = module.exports = {};
 var go = function (controler, fileName) {
   var rules = require('./lib/rules.js').rules;
 
-
-  //var fileName = 'test.xml';
-  //var fileName = 'TEST_EXECUTOR_R4.jmx';
-  //var fileName = 'assertion_test.xml';
-
   data = fs.readFileSync(fileName).toString();
   etree = et.parse(data);
-
+  
+  // apply each rule
   rules.forEach(function (rule) {
     if (rule.active) {
       var elements = etree.findall(rule.xpath);
@@ -27,8 +23,8 @@ var go = function (controler, fileName) {
     }
   });
 
-
   //console.log(etree.write());
+  //TODO: hardcoded file name, move to some config/parameter
   fs.writeFileSync('new_' + path.basename(fileName), etree.write({indent: 2}));
 
 }
