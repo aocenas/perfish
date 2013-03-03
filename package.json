@@ -1,8 +1,8 @@
 {
   "name": "perfish",
   "version": "0.0.1",
-  "description": "simple micro framework for manipulations of xml, created to help me automatically enhance jmeter scripts",
-  "keywords": ["xml", "xpath", "xml manipulation", "jmeter"]
+  "description": "simple lib for manipulations of xml, created to help me automatically enhance jmeter scripts",
+  "keywords": ["xml", "xpath", "xml manipulation", "jmeter"],
   "main": "index.js",
   "scripts": {
     "test": "test.js"
