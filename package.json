@@ -1,6 +1,6 @@
 {
   "name": "perfish",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "simple textual and xml manipulations for Jmeter jmx output",
   "main": "index.js",
   "scripts": {
